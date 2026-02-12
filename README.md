@@ -27,8 +27,17 @@ O projeto consiste na construção da interface de login utilizando React, TypeS
 * Teste unitário da função de boas-vindas
 
 * Estilização com Chakra UI
-
+  
 * Fundo customizado com gradiente radial
+
+
+<h5>Fotos do projeto</h5>
+
+![trash](https://github.com/user-attachments/assets/9ffb4c5c-6bf1-4924-83c5-22cd1266f7a0)
+<br>
+![tr](https://github.com/user-attachments/assets/ddf23d13-0b0d-40c6-94d5-bb26aec72182)
+
+
 
 
 
