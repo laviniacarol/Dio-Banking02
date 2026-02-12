@@ -8,26 +8,27 @@ O projeto consiste na construção da interface de login utilizando React, TypeS
 
 * React
 
-TypeScript
+* TypeScript
 
-Chakra UI
+* Chakra UI
 
-Jest (teste unitário)
+* Jest (teste unitário)
 
 <h3>Funcionalidades Implementadas:</h3>
 
-Componente Header com título da aplicação
+* Componente Header com título da aplicação
 
-Componente Button reutilizável recebendo onClick como prop
+* Componente Button reutilizável recebendo onClick como prop
 
-Componente Card contendo o formulário de login
+* Componente Card contendo o formulário de login
 
-Função de boas-vindas personalizada com base no email informado
+* Função de boas-vindas personalizada com base no email informado
 
-Teste unitário da função de boas-vindas
+* Teste unitário da função de boas-vindas
 
-Estilização com Chakra UI
+* Estilização com Chakra UI
 
-Fundo customizado com gradiente radial
+* Fundo customizado com gradiente radial
+
 
 
