@@ -6,7 +6,7 @@ O projeto consiste na construção da interface de login utilizando React, TypeS
 
 <h3>Tecnologias Utilizadas:</h3>
 
-React
+* React
 
 TypeScript
 
@@ -29,4 +29,5 @@ Teste unitário da função de boas-vindas
 Estilização com Chakra UI
 
 Fundo customizado com gradiente radial
+
 
