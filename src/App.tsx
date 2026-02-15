@@ -1,29 +1,25 @@
-
-
 import { ChakraProvider, Box } from "@chakra-ui/react";
 import { Header } from "./components/Header/Header";
 import { Card } from "./components/Card/Card";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Conta from "./pages/Conta";
+import { Layout } from "./components/Layout";
+import ContaInfo from "./pages/ContaInfo";
 
 function App() {
-
-
-
   return (
-    <ChakraProvider>
-      <Box
-        minHeight="100vh"
-        bg="
-    radial-gradient(circle at 20% 30%, rgba(0, 255, 200, 0.25), transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(120, 0, 255, 0.25), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(0, 120, 255, 0.25), transparent 50%),
-    #000000
-  "
-        padding="25px"
-      >
-        <Header></Header>
-        <Card />
-      </Box>
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/conta/:id" element={<Conta />} />
+            <Route path="/infoconta" element={<ContaInfo />} />
+          </Routes>
+        </Layout>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 }
 
