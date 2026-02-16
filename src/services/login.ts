@@ -1,6 +1,10 @@
 import { api } from "../api";
 
-export const Login = async (email: string): Promise<string> => {
+export const Login = async (
+  email: string,
+  setIsLoggedIn?: (isLoggedIn: boolean) => void,
+  navigate?: (path: string) => void
+): Promise<string> => {
   const data: any = await api;
 
   if (!email) return "Bem-vindo!";
@@ -9,6 +13,13 @@ export const Login = async (email: string): Promise<string> => {
     return "Email inválido!";
   }
 
+
+  if (setIsLoggedIn) {
+    setIsLoggedIn(true);
+  }
+  if (navigate) {
+    navigate(`/${data.id}`);
+  }
   const name = email.split("@")[0];
   const formatted =
     name.charAt(0).toUpperCase() + name.slice(1);

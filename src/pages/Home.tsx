@@ -1,13 +1,18 @@
-import { Button, Center, Input } from "../__mocks__/chakra";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button, Center, Input } from "@chakra-ui/react";
 import { Card } from "../components/Card/Card";
 import { Login } from "../services/login";
+import { AppContext } from "../components/AppContext/AppContext";
 
 
 const Home = () => {
   const [email, setEmail] = useState<string>("");
+  const { setIsLoggedIn } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const message = await Login(email);
+    const message = await Login(email, setIsLoggedIn, navigate);
     alert(message);
   };
 
@@ -33,7 +38,3 @@ const Home = () => {
 };
 
 export default Home;
-
-function useState<T>(arg0: string): [any, any] {
-  throw new Error("Function not implemented.");
-}

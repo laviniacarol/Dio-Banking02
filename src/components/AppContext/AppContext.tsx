@@ -1,20 +1,22 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 
 interface IAppContext {
   user: string;
   isLoggedIn?: boolean,
+  setIsLoggedIn: (isLoggedIn: boolean) => void
 }
 
-export const AppContext = createContext<IAppContext>({ user: "" });
+export const AppContext = createContext({} as IAppContext)
 
 
-export const AppContextProvider = ({ children }: { children: ReactNode }) => {
+export const AppContextProvider = ({ children }: any) => {
+  const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
+  
   const user = "John Doe"; 
-  const isLoggedIn = false
+
   return (
-    
-    <AppContext.Provider value={{user, isLoggedIn}}>
+    <AppContext.Provider value={{user, isLoggedIn, setIsLoggedIn}}>
       {children}
     </AppContext.Provider>
   )
