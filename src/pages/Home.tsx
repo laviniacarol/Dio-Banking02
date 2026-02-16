@@ -8,8 +8,8 @@ import { AppContext } from "../components/AppContext/AppContext";
 
 const Home = () => {
   const [email, setEmail] = useState<string>("");
-  const { setIsLoggedIn } = useContext(AppContext);
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useContext(AppContext);
 
   const handleLogin = async () => {
     const message = await Login(email, setIsLoggedIn, navigate);

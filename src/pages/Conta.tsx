@@ -17,29 +17,30 @@ interface UserData {
 
 const Conta = () => {
   const [userData, setUserData] = useState<null | UserData>(null);
- const { id } = useParams();
-   const navigate = useNavigate();
- 
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { isLoggedIn } = useContext(AppContext);
 
-  !isLoggedIn && navigate("/");
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+      return;
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     const getData = async () => {
       const data: any | UserData = await api;
       setUserData(data);
+      
+      if (data && id !== data.id) {
+        navigate("/");
+      }
     };
     getData();
-  }, []);
+  }, [id, navigate]);
 
-
-   const actualData = new Date();
-   
-   
-
-   if(userData && id !== userData.id) {
-     navigate("/");
-   }
+  const actualData = new Date();
   return (
     <Center>
     <SimpleGrid columns={2} spacing={10}>

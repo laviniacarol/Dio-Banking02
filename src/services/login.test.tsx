@@ -13,15 +13,16 @@ describe('login', () => {
     });
 
     it('Deve exibir um alert com boas vindas caso o email seja válido', async () => {
-        await Login(mockEmail, mockSetIsLoggedIn, mockNavigate)
+        const response = await Login(mockEmail, mockSetIsLoggedIn, mockNavigate)
         expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
-        expect(mockNavigate).toHaveBeenCalledWith('/1')
+        expect(mockNavigate).toHaveBeenCalledWith('/conta/1')
+        expect(response).toBe('Bem-vindo, Tester!')
     })
 
     it('Deve exibir um erro caso o email seja inválido', async () => {
-        const message = await Login('invalid-email', mockSetIsLoggedIn, mockNavigate)
+        const response = await Login('invalid-email', mockSetIsLoggedIn, mockNavigate)
         expect(mockSetIsLoggedIn).not.toHaveBeenCalled()
         expect(mockNavigate).not.toHaveBeenCalled()
-        expect(message).toBe('Email inválido!')
+        expect(response).toBe('Email inválido!')
     })
 })

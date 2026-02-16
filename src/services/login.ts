@@ -13,12 +13,11 @@ export const Login = async (
     return "Email inválido!";
   }
 
-
   if (setIsLoggedIn) {
     setIsLoggedIn(true);
   }
   if (navigate) {
-    navigate(`/${data.id}`);
+    navigate(`/conta/${data.id}`);
   }
   const name = email.split("@")[0];
   const formatted =
