@@ -4,15 +4,13 @@ import { Layout } from "./components/Layout";
 import ContaInfo from "./pages/ContaInfo";
 import { AppContextProvider } from "./components/AppContext/AppContext";
 import MainRoutes from "./routes";
-import { getAllLocalStorage } from "./services/storage";
-
-
+import { createLocalStorage, getAllLocalStorage } from "./services/storage";
 
 
 function App() {
 
-  const localStorage = getAllLocalStorage();
-  console.log(localStorage);
+  createLocalStorage();
+  console.log(getAllLocalStorage());
   
   return (
     <BrowserRouter>
