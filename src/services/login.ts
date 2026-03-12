@@ -1,27 +1,54 @@
 import { api } from "../api";
 
+interface IApiUser {
+  email: string;
+  password: string;
+  name: string;
+  id: string;
+}
+
+interface IAuthenticatedUser {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface ILoginResponse {
+  success: boolean;
+  message: string;
+  user?: IAuthenticatedUser;
+}
+
 export const Login = async (
   email: string,
-  setIsLoggedIn?: (isLoggedIn: boolean) => void,
-  navigate?: (path: string) => void
-): Promise<string> => {
-  const data: any = await api;
+  password: string
+): Promise<ILoginResponse> => {
+  const data = (await api) as IApiUser;
 
-  if (!email) return "Bem-vindo!";
-
-  if (email !== data.email) {
-    return "Email inválido!";
+  if (!email || !password) {
+    return {
+      success: false,
+      message: "Preencha email e senha!",
+    };
   }
 
-  if (setIsLoggedIn) {
-    setIsLoggedIn(true);
+  if (email !== data.email || password !== data.password) {
+    return {
+      success: false,
+      message: "Email ou senha inválidos!",
+    };
   }
-  if (navigate) {
-    navigate(`/conta/${data.id}`);
-  }
+
   const name = email.split("@")[0];
-  const formatted =
-    name.charAt(0).toUpperCase() + name.slice(1);
+  const formatted = name.charAt(0).toUpperCase() + name.slice(1);
 
-  return `Bem-vindo, ${formatted}!`;
+  return {
+    success: true,
+    message: `Bem-vindo, ${formatted}!`,
+    user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+    },
+  };
 };

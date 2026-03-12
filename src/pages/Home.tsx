@@ -8,12 +8,19 @@ import { AppContext } from "../components/AppContext/AppContext";
 
 const Home = () => {
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContext(AppContext);
+  const { login } = useContext(AppContext);
 
   const handleLogin = async () => {
-    const message = await Login(email, setIsLoggedIn, navigate);
-    alert(message);
+    const response = await Login(email, password);
+
+    alert(response.message);
+
+    if (response.success && response.user) {
+      login(response.user);
+      navigate(`/conta/${response.user.id}`);
+    }
   };
 
   return (
@@ -28,7 +35,12 @@ const Home = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      <Input placeholder="Senha" type="password" />
+      <Input
+        placeholder="Senha"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
 
       <Center>
         <Button onClick={handleLogin}>Entrar</Button>

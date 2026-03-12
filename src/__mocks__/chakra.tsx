@@ -26,14 +26,22 @@ const Center = ({ children, ...props }: any) =>
   React.createElement('div', filterDOMProps(props), children);
 const Flex = ({ children, ...props }: any) =>
   React.createElement('div', filterDOMProps(props), children);
+const Spacer = ({ children, ...props }: any) =>
+  React.createElement('div', filterDOMProps(props), children);
+const SimpleGrid = ({ children, ...props }: any) =>
+  React.createElement('div', filterDOMProps(props), children);
 const Heading = ({ children, ...props }: any) =>
   React.createElement('h1', filterDOMProps(props), children);
 const Text = ({ children, ...props }: any) =>
   React.createElement('p', filterDOMProps(props), children);
+const Link = ({ children, ...props }: any) =>
+  React.createElement('a', filterDOMProps(props), children);
 const Input = ({ ...props }: any) =>
   React.createElement('input', filterDOMProps(props));
 const Button = ({ children, ...props }: any) =>
   React.createElement('button', filterDOMProps(props), children);
+const Spinner = ({ ...props }: any) =>
+  React.createElement('div', filterDOMProps(props), 'loading');
 
-export { ChakraProvider, Box, Center, Flex, Heading, Text, Input, Button };
-export default { ChakraProvider, Box, Center, Flex, Heading, Text, Input, Button };
+export { ChakraProvider, Box, Center, Flex, Spacer, SimpleGrid, Heading, Text, Link, Input, Button, Spinner };
+export default { ChakraProvider, Box, Center, Flex, Spacer, SimpleGrid, Heading, Text, Link, Input, Button, Spinner };

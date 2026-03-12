@@ -1,18 +1,17 @@
-import { ChakraProvider, Box } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { BrowserRouter} from "react-router-dom";
 import { Layout } from "./components/Layout";
-import ContaInfo from "./pages/ContaInfo";
 import { AppContextProvider } from "./components/AppContext/AppContext";
 import MainRoutes from "./routes";
-import { changeLocalStorage, createLocalStorage, getAllLocalStorage } from "./services/storage";
+import { createLocalStorage } from "./services/storage";
 
 
 function App() {
 
-  createLocalStorage();
-  console.log(getAllLocalStorage());
+  !localStorage.getItem('diobank') && createLocalStorage();
+ 
+   
   
-  changeLocalStorage({ login: true });
 
   return (
     <BrowserRouter>

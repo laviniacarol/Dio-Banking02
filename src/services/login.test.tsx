@@ -1,28 +1,43 @@
 
 import { Login } from "./login";
 
-const mockSetIsLoggedIn = jest.fn();
-const mockNavigate = jest.fn();
-
 describe('login', () => {
     const mockEmail = 'tester@dio.bank';
+    const mockPassword = '123';
 
-    beforeEach(() => {
-        mockSetIsLoggedIn.mockClear();
-        mockNavigate.mockClear();
-    });
+    it('Deve autenticar caso email e senha sejam válidos', async () => {
+        const response = await Login(mockEmail, mockPassword);
 
-    it('Deve exibir um alert com boas vindas caso o email seja válido', async () => {
-        const response = await Login(mockEmail, mockSetIsLoggedIn, mockNavigate)
-        expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
-        expect(mockNavigate).toHaveBeenCalledWith('/conta/1')
-        expect(response).toBe('Bem-vindo, Tester!')
+        expect(response.success).toBe(true);
+        expect(response.message).toBe('Bem-vindo, Tester!');
+        expect(response.user).toEqual({
+            id: '1',
+            name: 'Teste Dio',
+            email: 'tester@dio.bank'
+        });
     })
 
     it('Deve exibir um erro caso o email seja inválido', async () => {
-        const response = await Login('invalid-email', mockSetIsLoggedIn, mockNavigate)
-        expect(mockSetIsLoggedIn).not.toHaveBeenCalled()
-        expect(mockNavigate).not.toHaveBeenCalled()
-        expect(response).toBe('Email inválido!')
+        const response = await Login('invalid-email', mockPassword);
+
+        expect(response.success).toBe(false);
+        expect(response.message).toBe('Email ou senha inválidos!');
+        expect(response.user).toBeUndefined();
+    })
+
+    it('Deve exibir um erro caso a senha seja inválida', async () => {
+        const response = await Login(mockEmail, 'wrong-password');
+
+        expect(response.success).toBe(false);
+        expect(response.message).toBe('Email ou senha inválidos!');
+        expect(response.user).toBeUndefined();
+    })
+
+    it('Deve exigir email e senha para autenticar', async () => {
+        const response = await Login(mockEmail, '');
+
+        expect(response.success).toBe(false);
+        expect(response.message).toBe('Preencha email e senha!');
+        expect(response.user).toBeUndefined();
     })
 })
