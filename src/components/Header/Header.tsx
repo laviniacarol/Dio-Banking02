@@ -14,25 +14,25 @@ export const Header = () => {
   }
 
   return (
-    <Flex boxShadow="sm" bg="black" padding="5px">
-      <Box>
-        <Flex maxW="1200px" mx="auto" align="center" px="16px" py="12px">
-          <Heading size="md" color="white">
+    <Flex boxShadow="sm" bg="black" px={{ base: "12px", md: "24px" }}>
+      <Flex maxW="1200px" w="100%" mx="auto" align="center" py={{ base: "12px", md: "14px" }}>
+        <Box>
+          <Heading size={{ base: "sm", md: "md" }} color="white" letterSpacing="wide">
             DIO BANK
           </Heading>
-        </Flex>
-      </Box>
+        </Box>
       {
          isLoggedIn && (
           <>
       <Spacer />
-      <Button onClick={handleLogout}>
+      <Button size={{ base: "sm", md: "md" }} onClick={handleLogout}>
         Sair
       </Button>
       </>
 )
 }
-</Flex>
+      </Flex>
+    </Flex>
 
   );
 };

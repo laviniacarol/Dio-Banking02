@@ -1,7 +1,6 @@
 import { Box } from "@chakra-ui/react";
 
 
-import { api } from "../../api";
 
 
 
@@ -10,11 +9,13 @@ export const Card = ({children} : any) => {
   return (
     <Box
       backgroundColor="white"
-      borderRadius="25px"
-      padding="15px"
-      maxWidth="400px"
+      borderRadius={{ base: "16px", md: "25px" }}
+      padding={{ base: "20px", md: "24px" }}
+      width="100%"
+      maxWidth={{ base: "100%", sm: "420px" }}
       margin="0 auto"
-      marginTop="100px"
+      marginTop={{ base: "24px", md: "64px" }}
+      boxShadow={{ base: "md", md: "xl" }}
     >
       
       {children}

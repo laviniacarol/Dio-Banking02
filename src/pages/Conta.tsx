@@ -42,12 +42,12 @@ const Conta = () => {
 
   const actualData = new Date();
   return (
-    <Center>
-    <SimpleGrid columns={2} spacing={10}>
+    <Center px={{ base: 0, md: 2 }}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 4, md: 8 }} width="100%" maxW="980px">
         {
             userData === undefined || userData === null ? 
             (
-                <Center>
+          <Center minH="180px">
                     <Spinner color="white" size="xl" />
                 </Center>
             ) : 

@@ -11,15 +11,15 @@ const CardInfo = ({ mainContent, content }: ICardInfo) => {
       color="white"
       borderColor="gray.200"
       backgroundColor="black"
-      padding="20px"
-      borderRadius="8px"
+      padding={{ base: "16px", md: "20px" }}
+      borderRadius={{ base: "10px", md: "8px" }}
       boxShadow="md"
     >
-      <Text fontWeight="bold" fontSize="2xl">
+      <Text fontWeight="bold" fontSize={{ base: "xl", md: "2xl" }}>
         {mainContent}
       </Text>
       
-      <Text fontSize="xl">
+      <Text mt={2} fontSize={{ base: "lg", md: "xl" }}>
         {content}
         </Text>
     </Box>

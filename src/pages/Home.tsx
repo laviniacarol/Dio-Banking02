@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Center, Input } from "@chakra-ui/react";
+import { Button, Center, Input, Text } from "@chakra-ui/react";
 import { Card } from "../components/Card/Card";
 import { Login } from "../services/login";
 import { AppContext } from "../components/AppContext/AppContext";
@@ -26,13 +26,17 @@ const Home = () => {
   return (
     <Card>
        <Center>
-        <h1>Faça o Login</h1>
+        <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="bold" mb={{ base: 4, md: 6 }}>
+          Faça o Login
+        </Text>
       </Center>
 
       <Input
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        mb={3}
+        size={{ base: "md", md: "lg" }}
       />
 
       <Input
@@ -40,10 +44,14 @@ const Home = () => {
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        mb={5}
+        size={{ base: "md", md: "lg" }}
       />
 
       <Center>
-        <Button onClick={handleLogin}>Entrar</Button>
+        <Button width="100%" maxW={{ base: "100%", md: "240px" }} size={{ base: "md", md: "lg" }} onClick={handleLogin}>
+          Entrar
+        </Button>
       </Center>
     </Card>
   );
