@@ -1,4 +1,4 @@
-import { SimpleGrid, Spinner, Center } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Center, Text } from "@chakra-ui/react";
 import CardInfo from "../components/CardInfo/CardInfo";
 import { useContext, useEffect, useState } from "react";
 import { api } from "../api"; 
@@ -11,12 +11,13 @@ interface UserData {
   password: string;
   name: string;
   balance: number;
-  id: string;
+  user_id: string;
 }
 
 
 const Conta = () => {
   const [userData, setUserData] = useState<null | UserData>(null);
+  const [error, setError] = useState<string | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const { isLoggedIn } = useContext(AppContext);
@@ -38,11 +39,12 @@ const Conta = () => {
         const data: UserData = response.data;
         setUserData(data);
 
-        if (data && id !== data.id) {
+        if (data && id !== data.user_id) {
           navigate("/");
         }
-      } catch {
-        navigate("/");
+      } catch (err: any) {
+        const msg = err?.response?.data?.message || `Erro ao carregar dados (${err?.response?.status ?? 'sem resposta'})`;
+        setError(msg);
       }
     };
     getData();
@@ -58,6 +60,10 @@ const Conta = () => {
           <Center minH="180px">
                     <Spinner color="white" size="xl" />
                 </Center>
+            ) : error ? (
+              <Center minH="180px">
+                <Text color="red.300" fontSize="lg">{error}</Text>
+              </Center>
             ) : 
             (
                 <>

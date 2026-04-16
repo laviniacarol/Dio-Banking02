@@ -39,7 +39,7 @@ export const Login = async (
       },
     };
   } catch (error: any) {
-    const message = error?.response?.data?.message || "Email ou senha inválidos!";
+    const message = error?.response?.data?.message || "Email ou senha incorretos. Verifique seus dados e tente novamente.";
     return {
       success: false,
       message,
