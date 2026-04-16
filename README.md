@@ -86,8 +86,8 @@ npm test
 ---
 
 ## Fotos do projeto
-
-![trash](https://github.com/user-attachments/assets/9ffb4c5c-6bf1-4924-83c5-22cd1266f7a0)
+<img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/6183a701-1619-4e81-be04-6bedde0e3826" />
 <br>
-![tr](https://github.com/user-attachments/assets/ddf23d13-0b0d-40c6-94d5-bb26aec72182)
+<img width="1917" height="897" alt="image" src="https://github.com/user-attachments/assets/71771a32-c045-4950-9847-96afcc160923" />
+
 
