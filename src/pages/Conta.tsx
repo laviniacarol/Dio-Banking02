@@ -30,10 +30,18 @@ const Conta = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data: any | UserData = await api;
-      setUserData(data);
-      
-      if (data && id !== data.id) {
+      try {
+        const token = localStorage.getItem('diobank_token');
+        const response = await api.get(`/user/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data: UserData = response.data;
+        setUserData(data);
+
+        if (data && id !== data.id) {
+          navigate("/");
+        }
+      } catch {
         navigate("/");
       }
     };

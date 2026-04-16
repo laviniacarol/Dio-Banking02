@@ -1,14 +1,6 @@
 
-const conta = {
-    email: 'tester@dio.bank',
-    password: '123',
-    name: 'Teste Dio',
-    balance: 1475.00,
-    id: '1'
-}
+import axios from 'axios';
 
-export const api = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve(conta);
-    }, 3000);
-})
+export const api = axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+});

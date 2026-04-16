@@ -32,6 +32,7 @@ export const AppContextProvider = ({ children }: { children: ReactNode }) => {
     setIsLoggedIn(false);
     setUser(null);
     changeLocalStorage({ login: false, user: null });
+    localStorage.removeItem('diobank_token');
   };
 
   return (

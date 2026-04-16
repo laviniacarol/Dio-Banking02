@@ -1,12 +1,5 @@
 import { api } from "../api";
 
-interface IApiUser {
-  email: string;
-  password: string;
-  name: string;
-  id: string;
-}
-
 interface IAuthenticatedUser {
   id: string;
   name: string;
@@ -23,8 +16,6 @@ export const Login = async (
   email: string,
   password: string
 ): Promise<ILoginResponse> => {
-  const data = (await api) as IApiUser;
-
   if (!email || !password) {
     return {
       success: false,
@@ -32,23 +23,26 @@ export const Login = async (
     };
   }
 
-  if (email !== data.email || password !== data.password) {
+  try {
+    const response = await api.post('/login', { email, password });
+    const { token, user } = response.data;
+
+    localStorage.setItem('diobank_token', token);
+
+    return {
+      success: true,
+      message: `Bem-vindo, ${user.name}!`,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    };
+  } catch (error: any) {
+    const message = error?.response?.data?.message || "Email ou senha inválidos!";
     return {
       success: false,
-      message: "Email ou senha inválidos!",
+      message,
     };
   }
-
-  const name = email.split("@")[0];
-  const formatted = name.charAt(0).toUpperCase() + name.slice(1);
-
-  return {
-    success: true,
-    message: `Bem-vindo, ${formatted}!`,
-    user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-    },
-  };
 };
